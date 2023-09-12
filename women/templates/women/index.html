@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> {{ title }} </title>
-</head>
-<body>
-<p> {{ menu|join:" | " }}</p>
-<h1> {{ title }} </h1>
+{% extends 'base.html'%}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<nav>
+    <a href="#">Актрисы</a> |
+    <a href="#">Певицы</a> |
+    <a href="#">Спортсменки</a>
+</nav>
 
 <ul>
     {% for p in posts %}
     {% if p.is_published %}
-
     <li>
         <h2>{{ p.title }}</h2>
         <p>{{ p.content }}</p>
@@ -22,8 +21,5 @@
     </li>
     {% endif %}
     {% endfor %}
-
-
 </ul>
-</body>
-</html>
+{% endblock %}

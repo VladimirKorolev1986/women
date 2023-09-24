@@ -27,11 +27,10 @@ cats_db = [
 
 
 def index(request):
-    # t = render_to_string('women/index.html')
-    # return HttpResponse(t)
+    posts = Women.published.all()
     data = {'title': 'Главная страница',
             'menu': menu,
-            'posts': data_db,
+            'posts': posts,
             'cat_selected': 0,
             }
     return render(request, 'women/index.html', context=data)
@@ -67,8 +66,8 @@ def show_category(request, cat_id):
     return render(request, 'women/index.html', context=data)
 
 
-def show_post(request, post_id):
-    post = get_object_or_404(Women, pk=post_id)
+def show_post(request, post_slug):
+    post = get_object_or_404(Women, slug=post_slug)
 
     data = {
         'title': post.title,
